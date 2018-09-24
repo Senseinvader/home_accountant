@@ -10,14 +10,14 @@ public class ConnectionProvider {
 
     private ConnectionProvider() {}
 
-    public Connection getConnection() {
+    public static Connection getConnection() {
         if (connection == null) {
             try {
                 connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/accountantDB",
                         "postgres",
                         "dima1234");
             } catch (SQLException e) {
-                System.out.println("no connection was established");
+                System.out.println("No connection to DB!");
             }
         }
         return connection;
