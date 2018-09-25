@@ -1,8 +1,10 @@
 package com.codecool.krk;
 
-import com.codecool.krk.DAO.LoginDAO;
+import com.codecool.krk.controllers.LoginController;
+import com.sun.net.httpserver.HttpServer;
 
-import java.sql.SQLException;
+import java.io.IOException;
+import java.net.InetSocketAddress;
 
 /**
  * Hello world!
@@ -11,9 +13,12 @@ import java.sql.SQLException;
 public class App {
 
 
-    public static void main( String[] args ) throws SQLException {
-        LoginDAO ld = new LoginDAO();
-        System.out.println( "Hello World!" );
-        System.out.println(ld.getPasswordByLogin("dima"));
+    public static void main( String[] args ) throws IOException {
+
+        HttpServer server = HttpServer.create(new InetSocketAddress(8000), 1);
+        server.createContext("/login", new LoginController());
+        server.createContext("/main");
+        server.setExecutor(null);
+        server.start();
     }
 }

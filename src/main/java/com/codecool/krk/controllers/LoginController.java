@@ -1,7 +1,6 @@
 package com.codecool.krk.controllers;
 
 import com.codecool.krk.DAO.LoginDAO;
-import com.codecool.krk.model.SessionIdContainer;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
@@ -60,9 +59,6 @@ public class LoginController extends AbstractHandler implements HttpHandler {
 
     private boolean validatePassword(String login, String inputPass) throws SQLException {
         String extractedPass = loginDAO.getPasswordByLogin(login);
-        if (!(extractedPass == null) && extractedPass.equals(inputPass)) {
-            return true;
-        }
-        return false;
+        return (!(extractedPass == null) && extractedPass.equals(inputPass));
     }
 }
