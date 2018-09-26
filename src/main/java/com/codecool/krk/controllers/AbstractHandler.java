@@ -33,6 +33,10 @@ public abstract class AbstractHandler {
         return sessionIdContainer.contains(sessionId);
     }
 
+    public String getUserName(String sessionId) {
+        return sessionIdContainer.getUserLogin(sessionId);
+    }
+
     public void sendResponse(HttpExchange httpExchange, String response) {
         byte[] bytes = response.getBytes();
         try {
