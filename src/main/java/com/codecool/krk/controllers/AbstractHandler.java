@@ -37,6 +37,12 @@ public abstract class AbstractHandler {
         return sessionIdContainer.getUserLogin(sessionId);
     }
 
+    public String getLoginFromExchange(HttpExchange exchange) {
+        String cookieStr = exchange.getRequestHeaders().getFirst("Cookie");
+        String sessionId = getSessionIDFromCookieStr(cookieStr);
+        return getSessionIdContainer().getUserLogin(sessionId);
+    }
+
     public void sendResponse(HttpExchange httpExchange, String response) {
         byte[] bytes = response.getBytes();
         try {

@@ -1,12 +1,10 @@
 CREATE TABLE IF NOT EXISTS app_user (
-  id_user serial primary key,
-  login varchar(20) not null,
+  login varchar(20) not null primary key,
   pass varchar(20) not null
 );
 
 CREATE TABLE IF NOT EXISTS categories (
-  id_category serial primary key,
-  category varchar(20)
+  category varchar(20) primary key
 );
 
 CREATE TABLE IF NOT EXISTS expences (
@@ -14,10 +12,10 @@ CREATE TABLE IF NOT EXISTS expences (
   purchase_date date,
   amount int not null,
   comment varchar(50),
-  id_user int,
-  id_category int,
-  foreign key (id_user) references app_user(id_user),
-  foreign key (id_category) references categories (id_category)
+  login varchar(20),
+  category varchar(20),
+  foreign key (login) references app_user(login),
+  foreign key (category) references categories (category)
 );
 
 insert into app_user (login, pass)
@@ -26,11 +24,13 @@ values ('dima', '1234'), ('lisa', '5678');
 insert into categories (category)
 values ('rent'),('food'),('clothes');
 
-insert into expences (purchase_date, amount, id_user, id_category)
-values ('2018-09-05',100, 1, 2),
-       ('2018-09-01', 150, 2, 3);
+insert into expences (purchase_date, amount, login, category)
+values ('2018-09-05',100, 'dima', 'food'),
+       ('2018-09-01', 150, 'lisa', 'clothes')
+       ('2018-09-09', 100, 'dima', 'foo');
 
 select * from expences;
+TRUNCATE TABLE expences;
 
 select login, purchase_date, category, amount from app_user
 join expences on app_user.id_user=expences.id_user
