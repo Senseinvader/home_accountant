@@ -1,6 +1,7 @@
 package com.codecool.krk;
 
 import com.codecool.krk.controllers.LoginController;
+import com.codecool.krk.controllers.MainPageController;
 import com.sun.net.httpserver.HttpServer;
 
 import java.io.IOException;
@@ -17,7 +18,7 @@ public class App {
 
         HttpServer server = HttpServer.create(new InetSocketAddress(8000), 1);
         server.createContext("/login", new LoginController());
-        server.createContext("/main");
+        server.createContext("/main", new MainPageController());
         server.setExecutor(null);
         server.start();
     }

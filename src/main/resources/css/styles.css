@@ -1,0 +1,40 @@
+body {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-evenly;
+    width: 50%;
+}
+
+.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 25px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: green;
+}
+
+.input{
+    margin: 5px;
+}
+
+label {
+    display: inline-block;
+    text-align: right;
+    width: 20%;
+}
+
+#err-login-fn,
+#err-pass-fn {
+    color: white;
+    margin: -20px 0 10px 0;
+}
