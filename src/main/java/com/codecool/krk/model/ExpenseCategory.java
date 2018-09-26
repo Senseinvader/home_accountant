@@ -1,15 +1,15 @@
 package com.codecool.krk.model;
 
-public class ExpenceCategory {
+public class ExpenseCategory {
 
     private Integer categoryId;
     private String categoryName;
 
-    public ExpenceCategory(String categoryName) {
+    public ExpenseCategory(String categoryName) {
         this.categoryName = categoryName;
     }
 
-    public ExpenceCategory(Integer categoryId, String categoryName) {
+    public ExpenseCategory(Integer categoryId, String categoryName) {
         this.categoryId = categoryId;
         this.categoryName = categoryName;
     }

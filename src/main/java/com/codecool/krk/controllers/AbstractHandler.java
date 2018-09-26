@@ -58,11 +58,11 @@ public abstract class AbstractHandler {
         httpExchange.sendResponseHeaders(301, -1);
     }
 
-    public Map<String, String> readFormData(HttpExchange exchange) {
+    public Map<String, String> readFormData(HttpExchange httpExchange) {
         String formData = "";
 
         try {
-            InputStreamReader isr = new InputStreamReader(exchange.getRequestBody(), "utf-8");
+            InputStreamReader isr = new InputStreamReader(httpExchange.getRequestBody(), "utf-8");
             BufferedReader br = new BufferedReader(isr);
             formData = br.readLine();
         } catch (IOException e){
@@ -88,5 +88,13 @@ public abstract class AbstractHandler {
             }
         }
         return inputs;
+    }
+
+    public String[] parsePath(HttpExchange httpExchange) {
+        String[] pathArray = httpExchange.getRequestURI().getPath().split("/");
+        for (String element : pathArray) {
+            System.out.println(element);
+        }
+        return pathArray;
     }
 }

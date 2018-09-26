@@ -2,27 +2,27 @@ package com.codecool.krk.model;
 
 import java.util.Date;
 
-public class Expence {
+public class Expense {
 
     private Integer expenceId;
     private Integer expenceAmount;
     private Date purchaseDate;
     private String comment;
-    private ExpenceCategory expenceCategory;
+    private ExpenseCategory expenseCategory;
 
-    public Expence(Integer expenceId, Integer expenceAmount, Date purcahseDate, String comment, ExpenceCategory expenceCategory) {
+    public Expense(Integer expenceId, Integer expenceAmount, Date purcahseDate, String comment, ExpenseCategory expenseCategory) {
         this.expenceId = expenceId;
         this.expenceAmount = expenceAmount;
         this.purchaseDate = purcahseDate;
         this.comment = comment;
-        this.expenceCategory = expenceCategory;
+        this.expenseCategory = expenseCategory;
     }
 
-    public Expence(Integer expenceAmount, Date purchaseDate, String comment, ExpenceCategory expenceCategory) {
+    public Expense(Integer expenceAmount, Date purchaseDate, String comment, ExpenseCategory expenseCategory) {
         this.expenceAmount = expenceAmount;
         this.purchaseDate = purchaseDate;
         this.comment = comment;
-        this.expenceCategory = expenceCategory;
+        this.expenseCategory = expenseCategory;
     }
 
     public Integer getExpenceId() {
@@ -57,11 +57,11 @@ public class Expence {
         this.comment = comment;
     }
 
-    public ExpenceCategory getExpenceCategory() {
-        return expenceCategory;
+    public ExpenseCategory getExpenseCategory() {
+        return expenseCategory;
     }
 
-    public void setExpenceCategory(ExpenceCategory expenceCategory) {
-        this.expenceCategory = expenceCategory;
+    public void setExpenseCategory(ExpenseCategory expenseCategory) {
+        this.expenseCategory = expenseCategory;
     }
 }
