@@ -3,15 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Main page</title>
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 </head>
 <body>
-<p>This will be the main page</p>
+<p>This will be the main page, dear {{name}}!</p>
 
-<div class="button-container">
-    <button type="button" class="button">Show all expenses</button>
-</div>
-
+<div class="area-50">
 <form action="#" method="POST">
     <div class="input">
         <label for="expense-category">Category*</label>
@@ -33,11 +31,23 @@
         <input type="date" name="purchase-date" id="purchase-date" class="input" required>
     </div>
     <div class="input">
-        <label for="textarea">Choose category of expense*</label>
+        <label for="textarea">Any comment?</label>
         <textarea id="textarea" name="comment" placeholder="Comments"></textarea>
     </div>
     <input type="submit" class="submit-button" id="submit-button" name="submit" value="Add expense" >
 </form>
+</div>
+
+<div class="area-50">
+<div class="button-container">
+    <form action="/expenses">
+        <button type="button" class="button">Show all expenses</button>
+    </form>
+</div>
+</div>
+<div class="logout-container">
+    <a href="/logout"> Log out</a>
+</div>
 
 </body>
 </html>
