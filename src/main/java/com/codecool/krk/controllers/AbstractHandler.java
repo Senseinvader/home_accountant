@@ -75,6 +75,7 @@ public abstract class AbstractHandler {
             InputStreamReader isr = new InputStreamReader(httpExchange.getRequestBody(), "utf-8");
             BufferedReader br = new BufferedReader(isr);
             formData = br.readLine();
+            isr.close();
         } catch (IOException e){
             e.printStackTrace();
         }

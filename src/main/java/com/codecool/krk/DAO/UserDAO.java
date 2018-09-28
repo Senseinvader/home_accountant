@@ -13,9 +13,10 @@ public class UserDAO {
 
     private static Connection connection = ConnectionProvider.getConnection();
 
-    public void addExpenseToDb(Integer amount, String category, Date date, String comment, String login) throws SQLException {
+    public void addExpenseToDb(Integer amount, String category, Date date, String comment, String login) {
 
-        String query = "INSERT INTO expence (purchase_date, amount, comment, login, category) values (?, ?, ?, ?, ?)";
+        System.out.println(convertUtilToSql(date).toString());
+        String query = "INSERT INTO expences (purchase_date, amount, comment, login, category) values (?, ?, ?, ?, ?)";
 
         try {
             PreparedStatement ps = connection.prepareStatement(query);
@@ -24,7 +25,7 @@ public class UserDAO {
             ps.setString(3, comment);
             ps.setString(4, login);
             ps.setString(5, category);
-            ps.executeQuery();
+            ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
