@@ -15,7 +15,6 @@ public class UserDAO {
 
     public void addExpenseToDb(Integer amount, String category, Date date, String comment, String login) {
 
-        System.out.println(convertUtilToSql(date).toString());
         String query = "INSERT INTO expences (purchase_date, amount, comment, login, category) values (?, ?, ?, ?, ?)";
 
         try {
