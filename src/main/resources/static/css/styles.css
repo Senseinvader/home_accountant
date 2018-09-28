@@ -1,14 +1,24 @@
+form {
+    border: 1px solid #4a4a4a;
+    padding-top: 15px;
+    border-radius: 5px;
+    background-color: honeydew;
+}
+
 .button-container {
     display: flex;
-    justify-content: space-evenly;
-    width: 50%;
+    justify-content: center;
+}
+
+.input-container {
+    margin-bottom: 35px;
 }
 
 .button {
     background-color: #4CAF50;
     border: none;
     color: white;
-    padding: 15px 25px;
+    padding: 10px 25px;
     text-align: center;
     font-size: 16px;
     cursor: pointer;
@@ -16,6 +26,12 @@
 
 .button:hover {
     background-color: green;
+}
+
+.input {
+    margin-left: 10px;
+    padding: 10px 10px;
+    border-radius: 5px;
 }
 
 .area-50{
@@ -28,10 +44,17 @@
     margin: 5px;
 }
 
+.clearfix {
+    content: "";
+    clear: both;
+    display: table;
+
+}
+
 label {
     display: inline-block;
     text-align: right;
-    width: 20%;
+    width: 40%;
 }
 
 #err-login-fn,

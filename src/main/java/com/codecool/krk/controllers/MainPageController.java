@@ -8,7 +8,6 @@ import org.jtwig.JtwigModel;
 import org.jtwig.JtwigTemplate;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -34,28 +33,18 @@ public class MainPageController extends AbstractHandler implements HttpHandler {
         if (method.equalsIgnoreCase("POST")) {
             Map inputs = readFormData(httpExchange);
 
-            String category = (String) inputs.get("expense-category");
 
+            String category = (String) inputs.get("expense-category");
             Integer amount = Integer.parseInt((String) inputs.get("amount"));
 
-            String stringDate = (String) inputs.get("purchase_date");
-            DateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-            Date date = null;
-            try {
-                date = df.parse(stringDate);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+            String stringDate = (String) inputs.get("purchase-date");
+            Date date = parseStringIntoDate(stringDate);
 
             String comment = (String) inputs.get("comment");
             String login = getUserName(sessionId);
-
             UserDAO userDAO = new UserDAO();
-            try {
-                userDAO.addExpenseToDb(amount, category, date, comment, login);
-            } catch (SQLException e) {
-                redirectToLocation(httpExchange, "/main");
-            }
+            userDAO.addExpenseToDb(amount, category, date, comment, login);
+            sendPersonalizedTemplateResponse(httpExchange, sessionId);
         }
     }
 
@@ -65,5 +54,16 @@ public class MainPageController extends AbstractHandler implements HttpHandler {
         model.with("name", getUserName(sessionId));
         String response = template.render(model);
         sendResponse(httpExchange, response);
+    }
+
+    private Date parseStringIntoDate(String stringDate) {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = null;
+        try {
+            date = df.parse(stringDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
     }
 }
