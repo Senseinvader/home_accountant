@@ -28,6 +28,11 @@ form {
     background-color: green;
 }
 
+#button-link {
+    color: white;
+    text-decoration: none;
+}
+
 .input {
     margin-left: 10px;
     padding: 10px 10px;

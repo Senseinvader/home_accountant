@@ -1,48 +1,55 @@
 package com.codecool.krk.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Expense {
 
-    private Integer expenceId;
-    private Integer expenceAmount;
+    private Integer expenseId;
+    private Integer expenseAmount;
     private Date purchaseDate;
     private String comment;
     private ExpenseCategory expenseCategory;
 
-    public Expense(Integer expenceId, Integer expenceAmount, Date purcahseDate, String comment, ExpenseCategory expenseCategory) {
-        this.expenceId = expenceId;
-        this.expenceAmount = expenceAmount;
-        this.purchaseDate = purcahseDate;
+    public Expense(Integer expenseId, Integer expenseAmount, Date purchaseDate, String comment, ExpenseCategory expenseCategory) {
+        this.expenseId = expenseId;
+        this.expenseAmount = expenseAmount;
+        this.purchaseDate = purchaseDate;
         this.comment = comment;
         this.expenseCategory = expenseCategory;
     }
 
-    public Expense(Integer expenceAmount, Date purchaseDate, String comment, ExpenseCategory expenseCategory) {
-        this.expenceAmount = expenceAmount;
+    public Expense(Integer expenseAmount, Date purchaseDate, String comment, ExpenseCategory expenseCategory) {
+        this.expenseAmount = expenseAmount;
         this.purchaseDate = purchaseDate;
         this.comment = comment;
         this.expenseCategory = expenseCategory;
     }
 
     public Integer getExpenceId() {
-        return expenceId;
+        return expenseId;
     }
 
-    public void setExpenceId(Integer expenceId) {
-        this.expenceId = expenceId;
+    public void setExpenseId(Integer expenseId) {
+        this.expenseId = expenseId;
     }
 
-    public Integer getExpenceAmount() {
-        return expenceAmount;
+    public Integer getExpenseAmount() {
+        return expenseAmount;
     }
 
-    public void setExpenceAmount(Integer expenceAmount) {
-        this.expenceAmount = expenceAmount;
+    public void setExpenseAmount(Integer expenseAmount) {
+        this.expenseAmount = expenseAmount;
     }
 
     public Date getPurchaseDate() {
         return purchaseDate;
+    }
+
+    public String getStringPurchaseDate() {
+        String pattern = "yyyy-MM-dd";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        return simpleDateFormat.format(purchaseDate);
     }
 
     public void setPurchaseDate(Date purchaseDate) {
@@ -59,6 +66,10 @@ public class Expense {
 
     public ExpenseCategory getExpenseCategory() {
         return expenseCategory;
+    }
+
+    public String getExpenseCategoryName() {
+        return expenseCategory.getCategoryName();
     }
 
     public void setExpenseCategory(ExpenseCategory expenseCategory) {

@@ -21,7 +21,9 @@
             <label for="date-to">Date to*</label>
             <input type="date" class="input" id="date-to" name="date-to" required>
         </div>
-        <input type="submit" class="submit-button" name="submit" value="Show results">
+        <div class="button-container input-container">
+            <input type="submit" class="button" name="submit" value="Show results">
+        </div>
     </form>
 </div>
 
@@ -42,10 +44,10 @@
         <tbody>
         {% for expense in expenses %}
         <tr>
-            <td>{{ expense.purchaseDate }}</td>
-            <td>{{ expense.expenceAmount }}</td>
-            <td>{{ expense.expenseCategory }}</td>
-            <td>{{ expense.comment }}</td>
+            <td>{{ expense.getStringPurchaseDate() }}</td>
+            <td>{{ expense.getExpenseAmount() }}</td>
+            <td>{{ expense.getExpenseCategoryName() }}</td>
+            <td>{{ expense.getComment() }}</td>
         </tr>
         {% endfor %}}
         </tbody>
