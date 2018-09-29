@@ -8,7 +8,10 @@ import org.jtwig.JtwigModel;
 import org.jtwig.JtwigTemplate;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public class ExpensesController extends AbstractHandler implements HttpHandler {
 
@@ -28,21 +31,36 @@ public class ExpensesController extends AbstractHandler implements HttpHandler {
 
         if (method.equalsIgnoreCase("GET") && isLoggedIn(sessionId)) {
             List<Expense> allExpenses = expensesDAO.getAllExpenses(login);
-            sendTemplateWithAllExpenses(httpExchange, login, allExpenses);
+            sendTemplateWithExpenses(httpExchange, login, allExpenses, "beginning", "end");
         }
         if (method.equalsIgnoreCase("GET") && !isLoggedIn(sessionId)) {
             redirectToLocation(httpExchange, "/login");
         }
+        if (method.equalsIgnoreCase("POST")) {
+            Map inputs = readFormData(httpExchange);
+            String stringDateFrom  = (String) inputs.get("date-from");
+            Date dateFrom = parseStringIntoDate(stringDateFrom);
+            String stringDateTo = (String) inputs.get("date-to");
+            Date dateTo = parseStringIntoDate(stringDateTo);
+            List<Expense> expensesByDates = expensesDAO.getExpensesByDates(login, dateFrom, dateTo);
+            sendTemplateWithExpenses(httpExchange, login, expensesByDates, stringDateFrom, stringDateTo);
+        }
     }
 
-    private void sendTemplateWithAllExpenses(HttpExchange httpExchange, String login, List<Expense> expenses) {
+    private void sendTemplateWithExpenses(HttpExchange httpExchange, String login, List<Expense> expenses, String dateFrom, String dateTo) {
         JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/expenses.twig");
         JtwigModel model = JtwigModel.newModel();
         model.with("name", login);
-        model.with("dateFrom", "beginning");
-        model.with("dateTo", "end");
+        model.with("dateOne", dateFrom);
+        model.with("dateTwo", dateTo);
         model.with("expenses", expenses);
         String response = template.render(model);
         sendResponse(httpExchange, response);
+    }
+
+    private String getStringPurchaseDate(Date date) {
+        String pattern = "yyyy-MM-dd";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        return simpleDateFormat.format(date);
     }
 }

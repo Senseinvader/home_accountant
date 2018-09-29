@@ -55,15 +55,4 @@ public class MainPageController extends AbstractHandler implements HttpHandler {
         String response = template.render(model);
         sendResponse(httpExchange, response);
     }
-
-    private Date parseStringIntoDate(String stringDate) {
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = null;
-        try {
-            date = df.parse(stringDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return date;
-    }
 }
